@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOLE HOUSE - Premium Shoes Store</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
+body{background:#F9F5F0;color:#1a1a1a}
+header{background:#fff;color:#111;padding:16px 30px;position:sticky;top:0;z-index:100;border-bottom:1px solid #e8ddd0}
+.top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;max-width:1300px;margin:auto}
+.logo{font-size:30px;font-weight:900;letter-spacing:2px;cursor:pointer}
+.logo span{color:#B08968}
+nav{display:flex;gap:6px;flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px}
+nav button{background:#fff;color:#111;border:1px solid #e8ddd0;padding:7px 11px;font-size:13px;white-space:nowrap;border-radius:8px;cursor:pointer}
+nav button:hover, nav button.active{background:#111;color:#fff;border-color:#111}
+.cart-btn{background:#111!important;color:#fff!important;padding:7px 11px!important;font-size:16px!important}
+.hero{background:#111;color:#fff;text-align:center;padding:60px 20px}
+.hero h1{font-size:42px;line-height:1.2;letter-spacing:1px}
+.hero p{margin:14px auto;max-width:700px;font-size:16px;color:#d8d8d8;line-height:1.6}
+.hero button{background:#B08968;color:#fff;border:none;padding:13px 30px;font-size:16px;font-weight:800;border-radius:10px;cursor:pointer;margin-top:8px}
+.section-title{max-width:1300px;margin:35px auto 10px;padding:0 30px;font-size:24px;display:flex;justify-content:space-between;align-items:center}
+.section-title a{font-size:14px;color:#B08968;cursor:pointer;text-decoration:underline}
+.cat{display:flex;gap:10px;overflow:auto;padding:16px 30px;max-width:1300px;margin:auto}
+.cat button{background:#fff;border:1px solid #e8ddd0;padding:11px 20px;font-size:15px;font-weight:700;border-radius:30px;cursor:pointer;white-space:nowrap;color:#333}
+.cat button.active{background:#111;color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px;padding:10px 30px 20px;max-width:1300px;margin:auto}
+.card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 3px 14px rgba(0,0,0,.06);border:1px solid #eee;cursor:pointer;transition:.2s}
+.card:hover{transform:translateY(-4px);box-shadow:0 8px 20px rgba(0,0,0,.12)}
+.card img{width:100%;height:240px;object-fit:cover}
+.card .info{padding:16px}
+.card h3{font-size:18px;line-height:1.3}
+.card p{color:#888;font-size:13px;margin-top:4px}
+.price{font-size:20px;font-weight:900;margin:10px 0}
+.price s{color:#999;font-size:14px;font-weight:400}
+select{width:100%;padding:11px;border-radius:8px;border:1px solid #ddd;margin-bottom:10px;font-size:15px;background:#fff}
+.add{width:100%;background:#111;color:#fff;border:none;padding:13px;border-radius:10px;font-size:16px;font-weight:800;cursor:pointer}
+.add:hover{background:#B08968}
+.buy-now{width:100%;background:#B08968;color:#fff;border:none;padding:13px;border-radius:10px;font-size:16px;font-weight:800;cursor:pointer;margin-top:8px}
+.buy-now:hover{background:#111}
+.view-btn{width:100%;background:#fff;color:#111;border:1px solid #ddd;padding:10px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;margin-bottom:8px}
+.about-black{background:#0a0a0f;color:#fff;padding:70px 30px;margin-top:50px}
+.about-black-inner{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap}
+.about-black small{letter-spacing:4px;font-size:12px;color:#C9A86A;font-weight:700}
+.about-black h2{font-size:42px;font-family:Georgia,serif;line-height:1.1;margin:12px 0 8px}
+.about-black p{color:#9a9a9a;font-size:15px}
+.about-black button{background:#F9F5F0;color:#111;border:none;padding:14px 26px;font-size:12px;letter-spacing:2px;font-weight:800;cursor:pointer}
+.about-white{background:#EFE9E0;text-align:center;padding:70px 25px}
+.about-white small{letter-spacing:4px;font-size:12px;color:#a99f96;font-weight:700}
+.about-white h2{font-size:32px;font-family:Georgia,serif;margin:14px 0}
+.about-white p{max-width:650px;margin:0 auto;color:#666;font-size:16px;line-height:1.8}
+.about-white button{background:#111;color:#fff;border:none;padding:14px 28px;font-size:12px;letter-spacing:2px;font-weight:800;cursor:pointer;margin-top:24px}
+#productModal{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:300;display:none;align-items:center;justify-content:center;padding:20px}
+#productModal.open{display:flex}
+.modal-box{background:#fff;width:100%;max-width:900px;border-radius:20px;overflow:hidden;max-height:90vh;overflow-y:auto;display:flex;flex-wrap:wrap;position:relative}
+.modal-box .left{flex:1;min-width:300px}
+.modal-box .left img{width:100%;height:100%;min-height:350px;object-fit:cover}
+.modal-box .right{flex:1;min-width:300px;padding:30px}
+.modal-box .right h2{font-size:28px;line-height:1.2}
+.modal-box .right .m-price{font-size:26px;font-weight:900;margin:14px 0}
+.modal-box .right .m-price s{font-size:16px;color:#999;font-weight:400}
+.modal-box .right p{color:#666;font-size:15px;line-height:1.7;margin:8px 0}
+.size-row{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.size-row button{padding:11px 16px;border:1px solid #ddd;background:#fff;border-radius:8px;cursor:pointer;font-weight:700;font-size:15px}
+.size-row button.active{background:#111;color:#fff}
+.qty-row{display:flex;align-items:center;gap:12px;margin:14px 0}
+.qty-row button{width:38px;height:38px;border:1px solid #ddd;background:#fff;border-radius:8px;font-size:20px;cursor:pointer}
+.modal-add{width:100%;background:#111;color:#fff;border:none;padding:16px;border-radius:12px;font-size:17px;font-weight:900;cursor:pointer;margin-top:6px}
+.modal-add:hover{background:#B08968}
+.modal-close{position:absolute;top:12px;right:12px;background:#fff;border:none;width:36px;height:36px;border-radius:50%;font-size:18px;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.2);z-index:2}
+#cartBox{position:fixed;right:0;top:0;width:100%;max-width:440px;height:100%;background:#fff;z-index:400;transform:translateX(100%);transition:.3s;padding:24px;overflow:auto}
+#cartBox.open{transform:translateX(0)}
+.cart-item{display:flex;gap:12px;border-bottom:1px solid #eee;padding:12px 0;font-size:15px}
+.cart-item img{width:70px;height:70px;object-fit:cover;border-radius:10px}
+input{width:100%;padding:13px;border:1px solid #ddd;border-radius:10px;margin:7px 0;font-size:15px}
+.order-btn{width:100%;background:#111;color:#fff;border:none;padding:15px;border-radius:12px;font-size:17px;font-weight:900;cursor:pointer;margin-top:8px}
+.order-btn:hover{background:#B08968}
+.close{float:right;background:#f0f0f0;border:none;padding:8px 12px;border-radius:8px;cursor:pointer}
+.footer{background:#111;color:#aaa;text-align:center;padding:30px 20px;font-size:14px;line-height:1.6}
+.footer b{color:#fff;font-size:18px}
+</style>
+</head>
+<body>
+<header><div class="top"><div class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">SOLE <span>HOUSE</span></div><nav><button class="active" onclick="filterCat('All',this)">Home</button><button onclick="filterCat('Men',this)">Men</button><button onclick="filterCat('Women',this)">Women</button><button onclick="filterCat('Boys',this)">Boys</button><button onclick="filterCat('Kids',this)">Kids</button><button class="cart-btn" onclick="openCart()"> 🛍️  <span id="cartCount">0</span></button></nav></div></header>
+<div class="hero"><h1>Step Into Style.<br>Walk With Confidence.</h1><p>SOLE HOUSE - Where comfort meets premium style. Handpicked shoes for Men, Women, Boys & Kids. Cash on Delivery all over Pakistan.</p><button onclick="document.getElementById('grid').scrollIntoView({behavior:'smooth'})">Shop Now</button></div>
+<div class="section-title"><span>Shop By Category</span></div>
+<div class="cat"><button class="active" onclick="filterCat('All',this)">All Shoes</button><button onclick="filterCat('Men',this)">Men</button><button onclick="filterCat('Women',this)">Women</button><button onclick="filterCat('Boys',this)">Boys</button><button onclick="filterCat('Kids',this)">Kids</button><button onclick="filterCat('Sneakers',this)">Sneakers</button><button onclick="filterCat('Formal',this)">Formal</button><button onclick="filterCat('Loafer',this)">Loafer</button><button onclick="filterCat('Joggers',this)">Joggers</button><button onclick="filterCat('Sandals',this)">Sandals</button></div>
+<div class="section-title"><span>For Men 👞</span><a onclick="filterCat('Men',null)">View All -></a></div><div class="grid" id="gridMen"></div>
+<div class="section-title"><span>For Women 👠</span><a onclick="filterCat('Women',null)">View All -></a></div><div class="grid" id="gridWomen"></div>
+<div class="section-title"><span>For Boys 👟</span><a onclick="filterCat('Boys',null)">View All -></a></div><div class="grid" id="gridBoys"></div>
+<div class="section-title"><span>For Kids 🧒</span><a onclick="filterCat('Kids',null)">View All -></a></div><div class="grid" id="gridKids"></div>
+<div class="section-title"><span>All Shoes</span></div><div class="grid" id="grid"></div>
+<div class="about-black"><div class="about-black-inner"><div><small>THE SOLE HOUSE STANDARD</small><h2>Less noise. More identity.</h2><p>Designed for the way you move.</p></div><button onclick="document.getElementById('whoWeAre').scrollIntoView({behavior:'smooth'})">OUR STORY</button></div></div>
+<div class="about-white" id="whoWeAre"><small>WHO WE ARE</small><h2>Style without limits.</h2><p>SOLE HOUSE is built around considered essentials and confident streetwear. We believe what you wear should feel like you — simple, expressive and unapologetic. From premium formal to everyday joggers, for Men, Women, Boys & Kids — har step me comfort aur style.</p><button onclick="document.getElementById('grid').scrollIntoView({behavior:'smooth'})">DISCOVER SOLE HOUSE</button><p style="margin-top:22px;font-size:13px;color:#999">✅ Premium Quality • 🚚 Fast Delivery • 💵 Cash on Delivery • 🔁 Easy Exchange</p></div>
+<div id="productModal" onclick="if(event.target===this) closeProduct()"><div class="modal-box"><button class="modal-close" onclick="closeProduct()">✕</button><div class="left"><img id="mImg" src=""></div><div class="right"><span id="mTag" style="font-size:12px;background:#F9F5F0;border:1px solid #e8ddd0;padding:4px 10px;border-radius:20px"></span><h2 id="mName" style="margin-top:10px"></h2><div class="m-price"><span id="mPrice"></span> <s id="mOld"></s> <span id="mSave" style="font-size:13px;background:#e8f5e9;color:#2e7d32;padding:4px 8px;border-radius:8px;margin-left:6px"></span></div><p id="mDesc"></p><p><b>Select Size:</b></p><div class="size-row" id="mSizes"></div><p><b>Quantity:</b></p><div class="qty-row"><button onclick="changeQty(-1)">-</button><span id="mQty" style="font-size:18px;font-weight:800;min-width:20px;text-align:center">1</span><button onclick="changeQty(1)">+</button><span style="font-size:13px;color:#2e7d32">● In Stock - Ready to Ship</span></div><button class="modal-add" onclick="addFromModal()">Add to Cart +</button><button class="modal-add" style="background:#B08968;margin-top:8px" onclick="buyNowFromModal()">Buy It Now - Direct Checkout</button><p style="font-size:13px;text-align:center">🚚 Karachi Rs 200 | Other Cities Rs 300 • 💵 Cash on Delivery</p></div></div></div>
+<div id="cartBox"><button class="close" onclick="closeCart()">X</button><h2 style="font-size:22px">Your Cart</h2><div id="cartItems" style="margin:12px 0"></div><h3 id="totalText" style="font-size:19px">Total: Rs 0</h3><hr style="margin:14px 0"><h3 style="font-size:18px">Checkout - Cash on Delivery</h3><input id="cName" placeholder="Full Name *"><input id="cPhone" placeholder="Mobile Number *"><input id="cAddress" placeholder="Complete Address *"><input id="cCity" placeholder="City"><button class="order-btn" onclick="placeOrder()">Place Order</button><p style="font-size:13px;color:#888;margin-top:10px;text-align:center">Delivery: Karachi Rs 200 | Other Cities Rs 300</p></div>
+<div class="footer"><b>SOLE HOUSE</b><br>Premium Shoes Store - Pakistan<br>WhatsApp: 0317-2798138 | Cash on Delivery Available</div>
+<script>
+let products=[
+{name:"Air Runner Sneakers",cat:"Sneakers",group:"Men",price:2999,old:3999,img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=900",desc:"Lightweight Air Runner with soft cushion sole. Perfect for daily wear."},
+{name:"Classic White Sneaker",cat:"Sneakers",group:"Men",price:2499,old:3299,img:"https://images.unsplash.com/photo-1549298916-b41d501d3772?w=900",desc:"Classic white sneaker - har outfit ke saath jachta hai."},
+{name:"Black Formal Oxford",cat:"Formal",group:"Men",price:3499,old:4499,img:"https://images.unsplash.com/photo-1614252369475-531eba835eb1?w=900",desc:"Premium Black Oxford for office, wedding & formal events."},
+{name:"Brown Leather Loafer",cat:"Loafer",group:"Men",price:2799,old:3599,img:"https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=900",desc:"Brown Leather Loafer - classy aur comfortable."},
+{name:"Women White Sneaker",cat:"Sneakers",group:"Women",price:2799,old:3599,img:"https://images.unsplash.com/photo-1549298916-b41d501d3772?w=900",desc:"Women ke liye light aur comfortable white sneaker."},
+{name:"Women Comfort Sandal",cat:"Sandals",group:"Women",price:1999,old:2599,img:"https://images.unsplash.com/photo-1603487742131-4160ec999306?w=900",desc:"Women Comfort Sandal - soft sole, daily wear ke liye best."},
+{name:"Women Stylish Loafer",cat:"Loafer",group:"Women",price:2599,old:3299,img:"https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=900",desc:"Women Stylish Loafer - elegant aur comfortable."},
+{name:"Women Pink Runner",cat:"Joggers",group:"Women",price:2999,old:3899,img:"https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=900",desc:"Women Pink Runner - jogging aur daily walk ke liye."},
+{name:"Boys Cool Sneakers",cat:"Sneakers",group:"Boys",price:2199,old:2899,img:"https://images.unsplash.com/photo-1514989940723-e8e51635b782?w=900",desc:"Boys ke liye cool sneakers - durable aur stylish."},
+{name:"Boys Sport Joggers",cat:"Joggers",group:"Boys",price:2399,old:2999,img:"https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=900",desc:"Boys Sport Joggers - running aur sports ke liye."},
+{name:"Kids Light-Up Shoes",cat:"Sneakers",group:"Kids",price:1999,old:2599,img:"https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=900",desc:"Kids Light-Up Shoes - bachon ki favourite."},
+{name:"Kids Cute Sandals",cat:"Sandals",group:"Kids",price:1499,old:1999,img:"https://images.unsplash.com/photo-1603487742131-4160ec999306?w=900",desc:"Kids Cute Sandals - soft aur comfortable."}
+];
+let cart=[];let currentCat='All';let currentProduct=0;let selectedSize='Size 41';let qty=1;
+function cardHTML(p,i){return `<div class="card"><img src="${p.img}" onclick="openProduct(${i})"><div class="info"><span style="font-size:11px;background:#F9F5F0;border:1px solid #e8ddd0;padding:3px 8px;border-radius:10px">${p.group} • ${p.cat}</span><h3 style="margin-top:8px" onclick="openProduct(${i})">${p.name}</h3><p>Click to view details</p><div class="price">Rs ${p.price} <s>Rs ${p.old}</s></div><button class="view-btn" onclick="openProduct(${i})">View Product →</button><select id="size-${i}" onclick="event.stopPropagation()"><option>Size 39</option><option>Size 40</option><option selected>Size 41</option><option>Size 42</option><option>Size 43</option><option>Size 44</option></select><button class="add" onclick="event.stopPropagation();addToCart(${i})">Add to Cart +</button><button class="buy-now" onclick="event.stopPropagation();buyNowFromCard(${i})">Buy It Now →</button></div></div>`;}
+function render(){
+  document.getElementById('gridMen').innerHTML=products.map((p,i)=>({p,i})).filter(x=>x.p.group==='Men').slice(0,4).map(x=>cardHTML(x.p,x.i)).join('');
+  document.getElementById('gridWomen').innerHTML=products.map((p,i)=>({p,i})).filter(x=>x.p.group==='Women').slice(0,4).map(x=>cardHTML(x.p,x.i)).join('');
+  document.getElementById('gridBoys').innerHTML=products.map((p,i)=>({p,i})).filter(x=>x.p.group==='Boys').map(x=>cardHTML(x.p,x.i)).join('');
+  document.getElementById('gridKids').innerHTML=products.map((p,i)=>({p,i})).filter(x=>x.p.group==='Kids').map(x=>cardHTML(x.p,x.i)).join('');
+  const g=document.getElementById('grid');g.innerHTML='';
+  products.filter(p=>currentCat==='All'||p.group===currentCat||p.cat===currentCat).forEach((p)=>{let i=products.indexOf(p);g.innerHTML+=cardHTML(p,i);});
+}
+function filterCat(c,btn){currentCat=c;document.querySelectorAll('nav button, .cat button').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');render();document.getElementById('grid').scrollIntoView({behavior:'smooth'});}
+function openProduct(i){currentProduct=i;qty=1;selectedSize='Size 41';const p=products[i];document.getElementById('mImg').src=p.img;document.getElementById('mName').innerText=p.name;document.getElementById('mTag').innerText=p.group+' • '+p.cat;document.getElementById('mPrice').innerText='Rs '+p.price;document.getElementById('mOld').innerText='Rs '+p.old;document.getElementById('mSave').innerText='Save Rs '+(p.old-p.price);document.getElementById('mDesc').innerText=p.desc||'';document.getElementById('mQty').innerText='1';let sizes=['39','40','41','42','43','44'];document.getElementById('mSizes').innerHTML=sizes.map(s=>`<button onclick="selectSize(this,'Size ${s}')" class="${s==='41'?'active':''}">Size ${s}</button>`).join('');document.getElementById('productModal').classList.add('open');}
+function closeProduct(){document.getElementById('productModal').classList.remove('open');}
+function selectSize(btn,size){selectedSize=size;document.querySelectorAll('#mSizes button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
+function changeQty(n){qty=Math.max(1,qty+n);document.getElementById('mQty').innerText=qty;}
+function addFromModal(){const p=products[currentProduct];for(let k=0;k<qty;k++){cart.push({...p,size:selectedSize});}document.getElementById('cartCount').innerText=cart.length;closeProduct();openCart();}
+function buyNowFromCard(i){const p=products[i];const size=document.getElementById('size-'+i).value;cart.push({...p,size});document.getElementById('cartCount').innerText=cart.length;openCart();document.getElementById('cName').focus();}
+function buyNowFromModal(){const p=products[currentProduct];for(let k=0;k<qty;k++){cart.push({...p,size:selectedSize});}document.getElementById('cartCount').innerText=cart.length;closeProduct();openCart();document.getElementById('cName').focus();}
+function addToCart(i){const p=products[i];const size=document.getElementById('size-'+i).value;cart.push({...p,size});document.getElementById('cartCount').innerText=cart.length;openCart();}
+function openCart(){document.getElementById('cartBox').classList.add('open');renderCart();}
+function closeCart(){document.getElementById('cartBox').classList.remove('open');}
+function renderCart(){const box=document.getElementById('cartItems');if(cart.length===0){box.innerHTML='<p>Your cart is empty.</p>';}else{box.innerHTML=cart.map((c,idx)=>`<div class="cart-item"><img src="${c.img}"><div><b>${c.name}</b><br>${c.size} - Rs ${c.price} <button onclick="removeItem(${idx})" style="color:red;border:none;background:none;cursor:pointer">Remove</button></div></div>`).join('');}let total=cart.reduce((s,c)=>s+c.price,0);document.getElementById('totalText').innerText='Total: Rs '+total;}
+function removeItem(idx){cart.splice(idx,1);document.getElementById('cartCount').innerText=cart.length;renderCart();}
+function placeOrder(){const name=document.getElementById('cName').value.trim();const phone=document.getElementById('cPhone').value.trim();const addr=document.getElementById('cAddress').value.trim();const city=document.getElementById('cCity').value.trim();if(!name||!phone||!addr){alert('Please fill Name, Number and Address');return;}if(cart.length===0){alert('Please add shoes to cart first!');return;}let total=cart.reduce((s,c)=>s+c.price,0);let itemsText=cart.map(c=>`${c.name} (${c.size}) - Rs ${c.price}\nPhoto: ${c.img}`).join('\n\n');let msg=`New Order - SOLE HOUSE\n\nName: ${name}\nPhone: ${phone}\nCity: ${city}\nAddress: ${addr}\n\nItems:\n${itemsText}\n\nTotal: Rs ${total}\nPayment: Cash on Delivery`;window.open('https://wa.me/923172798138?text='+encodeURIComponent(msg),'_blank');}
+render();
+</script>
+</body>
+</html>
