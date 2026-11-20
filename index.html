@@ -11,10 +11,10 @@ header{background:#fff;color:#111;padding:16px 30px;position:sticky;top:0;z-inde
 .top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;max-width:1300px;margin:auto}
 .logo{font-size:30px;font-weight:900;letter-spacing:2px;cursor:pointer}
 .logo span{color:#B08968}
-nav{display:flex;gap:8px;flex-wrap:wrap}
-nav button{background:#fff;color:#111;border:1px solid #e8ddd0;padding:11px 16px;font-size:15px;font-weight:700;border-radius:8px;cursor:pointer}
+nav{display:flex;gap:6px;flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px}
+nav button{background:#fff;color:#111;border:1px solid #e8ddd0;padding:7px 11px;font-size:13px;white-space:nowrap;border-radius:8px;cursor:pointer}
 nav button:hover, nav button.active{background:#111;color:#fff;border-color:#111}
-.cart-btn{background:#111!important;color:#fff!important;padding:11px 18px!important}
+.cart-btn{background:#111!important;color:#fff!important;padding:7px 11px!important;font-size:16px!important}
 .hero{background:#111;color:#fff;text-align:center;padding:60px 20px}
 .hero h1{font-size:42px;line-height:1.2;letter-spacing:1px}
 .hero p{margin:14px auto;max-width:700px;font-size:16px;color:#d8d8d8;line-height:1.6}
@@ -81,7 +81,7 @@ input{width:100%;padding:13px;border:1px solid #ddd;border-radius:10px;margin:7p
 </style>
 </head>
 <body>
-<header><div class="top"><div class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">SOLE <span>HOUSE</span></div><nav><button class="active" onclick="filterCat('All',this)">Home</button><button onclick="filterCat('Men',this)">Men</button><button onclick="filterCat('Women',this)">Women</button><button onclick="filterCat('Boys',this)">Boys</button><button onclick="filterCat('Kids',this)">Kids</button><button class="cart-btn" onclick="openCart()">Cart (<span id="cartCount">0</span>)</button></nav></div></header>
+<header><div class="top"><div class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">SOLE <span>HOUSE</span></div><nav><button class="active" onclick="filterCat('All',this)">Home</button><button onclick="filterCat('Men',this)">Men</button><button onclick="filterCat('Women',this)">Women</button><button onclick="filterCat('Boys',this)">Boys</button><button onclick="filterCat('Kids',this)">Kids</button><button class="cart-btn" onclick="openCart()"> 🛍️  <span id="cartCount">0</span></button></nav></div></header>
 <div class="hero"><h1>Step Into Style.<br>Walk With Confidence.</h1><p>SOLE HOUSE - Where comfort meets premium style. Handpicked shoes for Men, Women, Boys & Kids. Cash on Delivery all over Pakistan.</p><button onclick="document.getElementById('grid').scrollIntoView({behavior:'smooth'})">Shop Now</button></div>
 <div class="section-title"><span>Shop By Category</span></div>
 <div class="cat"><button class="active" onclick="filterCat('All',this)">All Shoes</button><button onclick="filterCat('Men',this)">Men</button><button onclick="filterCat('Women',this)">Women</button><button onclick="filterCat('Boys',this)">Boys</button><button onclick="filterCat('Kids',this)">Kids</button><button onclick="filterCat('Sneakers',this)">Sneakers</button><button onclick="filterCat('Formal',this)">Formal</button><button onclick="filterCat('Loafer',this)">Loafer</button><button onclick="filterCat('Joggers',this)">Joggers</button><button onclick="filterCat('Sandals',this)">Sandals</button></div>
